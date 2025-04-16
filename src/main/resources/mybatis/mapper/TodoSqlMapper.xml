@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="click.clearline.todoapi.mapper.TodoSqlMapper">
+
+    <insert id="insert">
+        <selectKey keyProperty="id" resultType="Long" order="AFTER">
+            SELECT MAX(id) FROM todo
+        </selectKey>
+        INSERT INTO todo(
+            description
+        ) VALUES(
+            #{description}
+        )
+    </insert>
+
+    <select id="findAll" resultType="click.clearline.todoapi.domain.Todo">
+        SELECT
+            id, description, is_completed, is_fixed, created_at, updated_at, completed_at
+        FROM todo
+        ORDER BY is_fixed DESC, id DESC
+    </select>
+
+    <update id="update">
+        UPDATE todo
+        SET description = #{description},
+            updated_at = NOW() 
+        WHERE id = #{id}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM todo
+        WHERE id = #{id}
+    </delete>
+
+    <update id="updateCompleted">
+        UPDATE todo
+        SET is_completed = #{isCompleted},
+            completed_at = CASE WHEN #{isCompleted} THEN NOW() ELSE NULL END
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateFixed">
+        UPDATE todo
+        SET is_fixed = #{isFixed}
+        WHERE id = #{id}
+    </update>
+
+</mapper>
