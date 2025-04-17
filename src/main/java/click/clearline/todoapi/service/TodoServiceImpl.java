@@ -35,11 +35,6 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void deleteTodo(Long id) {
-        todoSqlMapper.delete(id);
-    }
-
-    @Override
     public void setCompleted(Long id, Boolean isCompleted) {
         todoSqlMapper.updateCompleted(id, isCompleted);
     }
@@ -47,5 +42,10 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public void setFixed(Long id, Boolean isFixed) {
         todoSqlMapper.updateFixed(id, isFixed);
+    }
+
+    @Override
+    public void deleteTodo(Long id) {
+        todoSqlMapper.delete(id);
     }
 }

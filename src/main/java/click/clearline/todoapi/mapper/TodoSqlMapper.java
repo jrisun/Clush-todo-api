@@ -13,7 +13,6 @@ public interface TodoSqlMapper {
     public Todo findById(Long id);
     public List<Todo> findAll();
     public void update(Todo todo);
-    public void delete(Long id);
     public void updateCompleted(
         @Param("id") Long id, 
         @Param("isCompleted") Boolean isCompleted
@@ -22,4 +21,5 @@ public interface TodoSqlMapper {
         @Param("id") Long id, 
         @Param("isFixed") Boolean isFixed
     );
+    public void delete(Long id);
 }

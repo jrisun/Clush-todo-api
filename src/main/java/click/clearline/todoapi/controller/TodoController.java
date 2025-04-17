@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import click.clearline.todoapi.domain.Todo;
 import click.clearline.todoapi.dto.RestResponse;
-import click.clearline.todoapi.dto.request.TodoCompletionRequestDto;
 import click.clearline.todoapi.dto.request.TodoCreateRequestDto;
 import click.clearline.todoapi.dto.request.TodoEditRequestDto;
-import click.clearline.todoapi.dto.request.TodoFixRequestDto;
 import click.clearline.todoapi.dto.response.TodoResponseDto;
 import click.clearline.todoapi.service.TodoService;
 import jakarta.validation.Valid;
@@ -61,22 +59,30 @@ public class TodoController {
         return RestResponse.success(TodoResponseDto.from(editedTodo));
     }
 
-    @PatchMapping("/{id}/completed")
-    public RestResponse<TodoResponseDto> setCompleted(
-        @PathVariable("id") Long id,
-        @RequestBody @Valid TodoCompletionRequestDto request
-    ) {
-        todoService.setCompleted(id, request.getIsCompleted());
+    @PostMapping("/{id}/complete")
+    public RestResponse<TodoResponseDto> completeTodo(@PathVariable("id") Long id) {
+        todoService.setCompleted(id, true);
         Todo todo = todoService.getTodoById(id);
         return RestResponse.success(TodoResponseDto.from(todo));
     }
 
-    @PatchMapping("/{id}/fixed")
-    public RestResponse<TodoResponseDto> setFixed(
-        @PathVariable("id") Long id,
-        @RequestBody @Valid TodoFixRequestDto request
-    ){
-        todoService.setFixed(id, request.getIsFixed());
+    @PostMapping("/{id}/uncomplete")
+    public RestResponse<TodoResponseDto> uncompleteTodo(@PathVariable("id") Long id) {
+        todoService.setCompleted(id, false);
+        Todo todo = todoService.getTodoById(id);
+        return RestResponse.success(TodoResponseDto.from(todo));
+    }
+
+    @PostMapping("/{id}/pin")
+    public RestResponse<TodoResponseDto> pinTodo(@PathVariable("id") Long id) {
+        todoService.setFixed(id, true);
+        Todo todo = todoService.getTodoById(id);
+        return RestResponse.success(TodoResponseDto.from(todo));
+    }
+
+    @PostMapping("/{id}/unpin")
+    public RestResponse<TodoResponseDto> unpinTodo(@PathVariable("id") Long id) {
+        todoService.setFixed(id, false);
         Todo todo = todoService.getTodoById(id);
         return RestResponse.success(TodoResponseDto.from(todo));
     }

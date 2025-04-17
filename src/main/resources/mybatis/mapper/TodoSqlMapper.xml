@@ -35,11 +35,6 @@
         WHERE id = #{id}
     </update>
 
-    <delete id="delete">
-        DELETE FROM todo
-        WHERE id = #{id}
-    </delete>
-
     <update id="updateCompleted">
         UPDATE todo
         SET is_completed = #{isCompleted},
@@ -52,5 +47,10 @@
         SET is_fixed = #{isFixed}
         WHERE id = #{id}
     </update>
+
+    <delete id="delete">
+        DELETE FROM todo
+        WHERE id = #{id}
+    </delete>
 
 </mapper>
