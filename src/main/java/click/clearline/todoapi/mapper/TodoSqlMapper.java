@@ -10,6 +10,7 @@ import click.clearline.todoapi.domain.Todo;
 @Mapper
 public interface TodoSqlMapper {
     public void insert(Todo todo);
+    public Todo findById(Long id);
     public List<Todo> findAll();
     public void update(Todo todo);
     public void delete(Long id);

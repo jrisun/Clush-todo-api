@@ -14,6 +14,13 @@
         )
     </insert>
 
+    <select id="findById" resultType="click.clearline.todoapi.domain.Todo">
+        SELECT 
+            id, description, is_completed, is_fixed, created_at, updated_at, completed_at
+        FROM todo
+        WHERE id = #{id}
+    </select>
+
     <select id="findAll" resultType="click.clearline.todoapi.domain.Todo">
         SELECT
             id, description, is_completed, is_fixed, created_at, updated_at, completed_at
