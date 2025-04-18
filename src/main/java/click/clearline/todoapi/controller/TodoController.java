@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import click.clearline.todoapi.domain.Todo;
@@ -28,7 +29,7 @@ public class TodoController {
 
     private final TodoService todoService;
     
-    @PostMapping("/")
+    @PostMapping("")
     public RestResponse<TodoResponseDto> create(@RequestBody @Valid TodoCreateRequestDto request) {
         Todo todo = request.toTodo();
         todoService.createTodo(todo);
@@ -37,9 +38,9 @@ public class TodoController {
         return RestResponse.ok(TodoResponseDto.from(createdTodo));
     }
 
-    @GetMapping("/")
-    public RestResponse<List<TodoResponseDto>> getAllTodos() {
-        List<Todo> todos = todoService.getAllTodos();
+    @GetMapping("")
+    public RestResponse<List<TodoResponseDto>> getAllTodos(@RequestParam(value = "word", required = false) String word) {
+        List<Todo> todos = todoService.getAllTodos(word);
         List<TodoResponseDto> response = todos.stream()
                 .map(TodoResponseDto::from)
                 .collect(Collectors.toList());

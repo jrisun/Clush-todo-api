@@ -25,6 +25,11 @@
         SELECT
             id, description, is_completed, is_fixed, created_at, updated_at, completed_at
         FROM todo
+        <where>
+            <if test="word != null and word != ''">
+                description LIKE CONCAT('%', #{word},'%')
+            </if>
+        </where>
         ORDER BY is_fixed DESC, id DESC
     </select>
 

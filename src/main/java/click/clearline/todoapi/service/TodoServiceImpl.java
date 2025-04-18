@@ -27,8 +27,8 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public List<Todo> getAllTodos() {
-        return todoSqlMapper.findAll();
+    public List<Todo> getAllTodos(String word) {
+        return todoSqlMapper.findAll(word);
     }
 
     @Override

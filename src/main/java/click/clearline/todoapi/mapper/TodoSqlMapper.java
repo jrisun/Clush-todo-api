@@ -11,7 +11,7 @@ import click.clearline.todoapi.domain.Todo;
 public interface TodoSqlMapper {
     public void insert(Todo todo);
     public Todo findById(Long id);
-    public List<Todo> findAll();
+    public List<Todo> findAll(String word);
     public void update(Todo todo);
     public void updateCompleted(
         @Param("id") Long id, 
