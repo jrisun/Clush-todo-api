@@ -34,7 +34,7 @@ public class TodoController {
         todoService.createTodo(todo);
 
         Todo createdTodo = todoService.getTodoById(todo.getId());
-        return RestResponse.success(TodoResponseDto.from(createdTodo));
+        return RestResponse.ok(TodoResponseDto.from(createdTodo));
     }
 
     @GetMapping("/")
@@ -43,7 +43,7 @@ public class TodoController {
         List<TodoResponseDto> response = todos.stream()
                 .map(TodoResponseDto::from)
                 .collect(Collectors.toList());
-        return RestResponse.success(response);
+        return RestResponse.ok(response);
     }
 
     @PatchMapping("/{id}")
@@ -56,41 +56,41 @@ public class TodoController {
         todoService.editTodo(todo);
 
         Todo editedTodo = todoService.getTodoById(id);
-        return RestResponse.success(TodoResponseDto.from(editedTodo));
+        return RestResponse.ok(TodoResponseDto.from(editedTodo));
     }
 
     @PostMapping("/{id}/complete")
     public RestResponse<TodoResponseDto> completeTodo(@PathVariable("id") Long id) {
         todoService.setCompleted(id, true);
         Todo todo = todoService.getTodoById(id);
-        return RestResponse.success(TodoResponseDto.from(todo));
+        return RestResponse.ok(TodoResponseDto.from(todo));
     }
 
     @PostMapping("/{id}/uncomplete")
     public RestResponse<TodoResponseDto> uncompleteTodo(@PathVariable("id") Long id) {
         todoService.setCompleted(id, false);
         Todo todo = todoService.getTodoById(id);
-        return RestResponse.success(TodoResponseDto.from(todo));
+        return RestResponse.ok(TodoResponseDto.from(todo));
     }
 
     @PostMapping("/{id}/pin")
     public RestResponse<TodoResponseDto> pinTodo(@PathVariable("id") Long id) {
         todoService.setFixed(id, true);
         Todo todo = todoService.getTodoById(id);
-        return RestResponse.success(TodoResponseDto.from(todo));
+        return RestResponse.ok(TodoResponseDto.from(todo));
     }
 
     @PostMapping("/{id}/unpin")
     public RestResponse<TodoResponseDto> unpinTodo(@PathVariable("id") Long id) {
         todoService.setFixed(id, false);
         Todo todo = todoService.getTodoById(id);
-        return RestResponse.success(TodoResponseDto.from(todo));
+        return RestResponse.ok(TodoResponseDto.from(todo));
     }
 
     @DeleteMapping("/{id}")
     public RestResponse<Void> deleteTodo(@PathVariable("id") Long id) {
         todoService.deleteTodo(id);
-        return RestResponse.success(null);
+        return RestResponse.ok();
     }
 
 }
