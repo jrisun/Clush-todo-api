@@ -16,6 +16,7 @@ public class TodoResponseDto {
     private Boolean isCompleted;
     private Boolean isFixed;
     private LocalDateTime createdAt;
+    private LocalDateTime completedAt;
 
     public static TodoResponseDto from(Todo todo) {
         return TodoResponseDto.builder()
@@ -24,6 +25,7 @@ public class TodoResponseDto {
                 .isCompleted(todo.getIsCompleted())
                 .isFixed(todo.getIsFixed())
                 .createdAt(todo.getCreatedAt())
+                .completedAt(todo.getCompletedAt())
                 .build();
     }
 }
