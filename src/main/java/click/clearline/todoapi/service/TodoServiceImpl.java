@@ -96,11 +96,13 @@ public class TodoServiceImpl implements TodoService {
         return String.join(",", descriptions);
     }
 
-    private String askToOpenAi(String prompt) {
+    private String askToOpenAi(String text) {
         OpenAIClient client = OpenAIOkHttpClient.builder().apiKey(openaiApiKey).build();
 
         ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
-            .addUserMessage(prompt)
+            .addUserMessage("나열된 할 일 목록을 요약해서 가볍게 정리해줘. 만약 요약할 내용이 없으면 가볍게 격려해줘")
+            .addUserMessage("결과는 꼭 50자 내로 줄여줘.")
+            .addUserMessage(String.format("할 일 목록 : '%s", text))
             .model(ChatModel.O3_MINI)
             .build();
         ChatCompletion chatCompletion = client.chat().completions().create(params);
