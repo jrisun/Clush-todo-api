@@ -22,7 +22,7 @@
 
 ### 배포 환경
 
-라즈베리파이 5, Docker Compose, DDNS
+Raspberry5, Docker Compose, AWS Route53
 
 ### 실행 방법
 
