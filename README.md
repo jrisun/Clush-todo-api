@@ -1,10 +1,11 @@
 # ToDo API - 할 일 관리 애플리케이션
 
-> 간단한 할 일 관리 애플리케이션 서비스입니다.<br/>
-> - 해야할 일을 작성하고 등록하면 수정하고 삭제할 수 있습니다.
-> - 목록 중 중요한 할 일은 상단에 고정하여 처리할 수 있습니다.
-> - 완료한 작업은 체크하여 하단에 따로 모아 구분할 수 있습니다.
-> - 할 일 목록이 없거나 로딩과 관련된 부분도 처리하였습니다.
+간단한 할 일 관리 애플리케이션 서비스입니다.<br/>
+- 해야할 일을 작성하고 등록하면 수정하고 삭제할 수 있습니다.
+- 목록 중 중요한 할 일은 상단에 고정하여 처리할 수 있습니다.
+- 완료한 작업은 체크하여 하단에 따로 모아 구분할 수 있습니다.
+- 할 일 목록이 없거나 로딩과 관련된 부분도 처리하였습니다.
+- Open AI 를 활용한 할 일 목록 요약 및 응원 내용이 출력됩니다.
 
 [Todo List 애플리케이션 링크](https://todo.clearline.click)
 
@@ -14,7 +15,7 @@
 ### 기술 스택
 
 - **Backend**: Java 17, SpringBoot 3.3.10, MyBatis
-- **Database**: MySQL 8.0
+- **Database**: MySQL 8
 - **Frontend**: React 19 + Vite, HTML, CSS
 - **IDE** : VSCode, DBeaver
 
@@ -61,3 +62,4 @@
 | POST        | /api/todo/{id}/pin        | 할 일 고정 처리   | id: 할 일의 번호<br>isFixed: 할 일의 고정 여부     | 이하 동일                                                                                                                                                                                                                                                                       |
 | POST        | /api/todo/{id}/unpin      | 할 일 고정 해제   | id: 할 일의 번호<br>isFixed: 할 일의 고정 여부     | 이하 동일                                                                                                                                                                                                                                                                       |
 | DELETE      | /api/todo/{id}            | 할 일 삭제      | id: 할 일의 번호                            | 이하 동일                                                                                                                                                                                                                                                                       |
+ GET      | /api/todo/summary           | 할 일 요약      |                             | data (String): 할 일 요약 내용                                                                                                                                                                                                                                                                      |
