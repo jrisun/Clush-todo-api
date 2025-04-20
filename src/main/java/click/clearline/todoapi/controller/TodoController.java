@@ -94,4 +94,11 @@ public class TodoController {
         return RestResponse.ok();
     }
 
+    // Open Ai 활용 요약
+    @GetMapping("/summary")
+    public RestResponse<String> getSummary() {
+        String summary = todoService.getTodoSummary();
+        return RestResponse.ok(summary);
+    }
+
 }

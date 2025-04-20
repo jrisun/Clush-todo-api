@@ -12,4 +12,5 @@ public interface TodoService {
     public void setCompleted(Long id, Boolean isCompleted);
     public void setFixed(Long id, Boolean isFixed);
     public void deleteTodo(Long id);
+    public String getTodoSummary();
 }
