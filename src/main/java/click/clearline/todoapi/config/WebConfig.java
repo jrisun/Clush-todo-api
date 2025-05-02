@@ -7,7 +7,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-    // 아래 설정 변경 필요
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -19,7 +18,6 @@ public class WebConfig implements WebMvcConfigurer {
                     "https://www.clearline.click:8100"
                 )
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS")
-                .allowedHeaders("Authorization", "Cathe-Control", "Content-Type")
                 .maxAge(3600);
     }
 

@@ -18,6 +18,7 @@ import click.clearline.todoapi.dto.RestResponse;
 import click.clearline.todoapi.dto.request.TodoCreateRequestDto;
 import click.clearline.todoapi.dto.request.TodoEditRequestDto;
 import click.clearline.todoapi.dto.response.TodoResponseDto;
+import click.clearline.todoapi.dto.response.TodoSummaryResponseDto;
 import click.clearline.todoapi.service.TodoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -96,9 +97,9 @@ public class TodoController {
 
     // Open Ai 활용 요약
     @GetMapping("/summary")
-    public RestResponse<String> getSummary() {
+    public RestResponse<TodoSummaryResponseDto> getSummary() {
         String summary = todoService.getTodoSummary();
-        return RestResponse.ok(summary);
+        return RestResponse.ok(TodoSummaryResponseDto.from(summary));
     }
 
 }

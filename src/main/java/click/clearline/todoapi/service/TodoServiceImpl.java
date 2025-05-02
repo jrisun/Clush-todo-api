@@ -90,7 +90,8 @@ public class TodoServiceImpl implements TodoService {
 
     private String getJoinTodoDescriptions() {
         List<Todo> todoList = todoSqlMapper.findAll(null);
-        List<String> descriptions = todoList.stream().filter(todo -> !todo.getIsCompleted())
+        List<String> descriptions = todoList.stream()
+                .filter(todo -> !todo.getIsCompleted())
                 .map(todo -> todo.getDescription())
                 .collect(Collectors.toList());
         return String.join(",", descriptions);
@@ -100,11 +101,11 @@ public class TodoServiceImpl implements TodoService {
         OpenAIClient client = OpenAIOkHttpClient.builder().apiKey(openaiApiKey).build();
 
         ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
-            .addUserMessage("나열된 할 일 목록을 요약해서 가볍게 정리해줘. 만약 요약할 내용이 없으면 가볍게 격려해줘")
-            .addUserMessage("결과는 꼭 50자 내로 줄여줘.")
-            .addUserMessage(String.format("할 일 목록 : '%s", text))
-            .model(ChatModel.O3_MINI)
-            .build();
+                .addUserMessage("나열된 할 일 목록을 요약해서 가볍게 정리해줘. 만약 요약할 내용이 없으면 가볍게 격려해줘")
+                .addUserMessage("결과는 꼭 50자 내로 줄여줘.")
+                .addUserMessage(String.format("할 일 목록 : '%s", text))
+                .model(ChatModel.GPT_4O_MINI)
+                .build();
         ChatCompletion chatCompletion = client.chat().completions().create(params);
 
         return chatCompletion.choices().get(0).message().content().orElseThrow();
