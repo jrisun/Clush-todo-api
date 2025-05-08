@@ -101,8 +101,10 @@ public class TodoServiceImpl implements TodoService {
         OpenAIClient client = OpenAIOkHttpClient.builder().apiKey(openaiApiKey).build();
 
         ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
-                .addUserMessage("나열된 할 일 목록을 요약해서 가볍게 정리해줘. 만약 요약할 내용이 없으면 가볍게 격려해줘")
-                .addUserMessage("결과는 꼭 50자 내로 줄여줘.")
+                .addUserMessage("할 일 목록을 분석해서, 오늘 먼저 하면 좋을 일을 1개 추천과 이유도 같이 말해줘")
+                .addUserMessage("결과는 60자 이내로 자연스럽게 정리해줘.")
+                .addUserMessage("만약 할 일이 없다면, 짧은 응원 메시지와 함께 따뜻한 명언도 알려줘.")
+                .addUserMessage("각 문장은 줄바꿈(엔터)해서 출력해줘.")
                 .addUserMessage(String.format("할 일 목록 : '%s", text))
                 .model(ChatModel.GPT_4O_MINI)
                 .build();

@@ -23,7 +23,7 @@
 
 ### 배포 환경
 
-Raspberry5, Docker Compose, AWS Route53
+RaspberryPi5, Docker Compose, AWS Route53
 
 ### 실행 방법
 
