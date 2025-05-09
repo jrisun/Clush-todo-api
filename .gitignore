@@ -38,3 +38,6 @@ out/
 
 ### Private configuration ###
 src/main/resources/application-private.properties
+
+### Gradle Local Settings ###
+gradle.properties
